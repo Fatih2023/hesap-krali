@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>SÜPER HESAP</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="ih.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        var rakamEkle = false;
+        var oncekisonuc = 0;
+        var islem = "=";
+
+        function temizle() {
+            document.hesapmakinesi.sonuc.value = 0;
+            oncekisonuc = 0;
+            rakamEkle = false;
+            islem = "=";
+        }
+
+        function hesapla(yeniislem) {
+            var yenisayi = eval(document.hesapmakinesi.sonuc.value);
+
+            if (islem == "+") {
+                oncekisonuc = oncekisonuc + yenisayi;
+            } else if (islem == "-") {
+                oncekisonuc = oncekisonuc - yenisayi;
+            } else if (islem == "*") {
+                oncekisonuc = oncekisonuc * yenisayi;
+            } else if (islem == "/") {
+                oncekisonuc = oncekisonuc / yenisayi;
+            } else if (islem == "=") {
+                oncekisonuc = yenisayi;
+            } else {
+                oncekisonuc = yenisayi;
+            }
+
+            document.hesapmakinesi.sonuc.value = oncekisonuc;
+            rakamEkle = false;
+            islem = yeniislem;
+        }
+
+        function sayiyaz(rakam) {
+            if (rakamEkle) {
+                document.hesapmakinesi.sonuc.value += rakam;
+            } else {
+                document.hesapmakinesi.sonuc.value = rakam;
+                rakamEkle = true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form name="hesapmakinesi">
+        <input type="field" name="sonuc" value="0" width="20px" align="right">
+        <br/>
+        <input type="button" name="7" value="7" onclick="sayiyaz(7)">
+        <input type="button" name="8" value="8" onclick="sayiyaz(8)">
+        <input type="button" name="9" value="9" onclick="sayiyaz(9)">
+        <br/>
+        <input type="button" name="4" value="4" onclick="sayiyaz(4)">
+        <input type="button" name="5" value="5" onclick="sayiyaz(5)">
+        <input type="button" name="6" value="6" onclick="sayiyaz(6)">
+        <br/>
+        <input type="button" name="1" value="1" onclick="sayiyaz(1)">
+        <input type="button" name="2" value="2" onclick="sayiyaz(2)">
+        <input type="button" name="3" value="3" onclick="sayiyaz(3)">
+        <br/>
+        <input type="button" name="0" value="0" onclick="sayiyaz(0)">
+        <input type="button" name="C" value="C" onclick="temizle()">
+        <input type="button" name="=" value="=" onclick="hesapla('=')">
+        <br/>
+        <input type="button" name="+" value="+" onclick="hesapla('+')">
+        <input type="button" name="-" value="-" onclick="hesapla('-')">
+        <input type="button" name="*" value="*" onclick="hesapla('*')">
+        <input type="button" name="/" value="/" onclick="hesapla('/')">
+
+    </form>
+</body>
+
+</html>
